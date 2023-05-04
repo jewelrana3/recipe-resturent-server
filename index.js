@@ -21,8 +21,19 @@ app.get('/food',(req,res)=>{
 
 app.get('/food/:id',(req,res)=>{
     const id = req.params.id;
-    const selected = food.find(n=>n_id === id)
+    const selected = food.find(n=>n._id === id)
     res.send(selected)
+})
+app.get('/resturent/:id',(req,res)=>{
+    const id = parseInt(req.params.id);
+    if(id === 0){
+        res.send(food)
+    }
+    else{
+        const resturentNews = food.filter(n=>parseInt(n.category_id) === id)
+        res.send(resturentNews)
+    }
+   
 })
 app.listen(port,()=>{
     console.log(`al most right:${port}`)
